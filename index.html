@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>जनता विद्यालय, जामोद - 2007 Batch Get-together</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #3b82f6, #9333ea);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 0.3em;
+    }
+
+    h2 {
+      font-size: 1.4em;
+      margin-bottom: 1.5em;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 1.8em;
+      font-weight: bold;
+      margin-top: 1.5em;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+      .countdown { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 जनता विद्यालय, जामोद - 2007 Batch 🎉</h1>
+  <h2>Get-Together कार्यक्रम — 25 ऑक्टोबर 2025 | सकाळी 10 वाजता पुढे</h2>
+
+  <div class="countdown">
+    <div class="box"><span id="days">0</span><br>दिवस</div>
+    <div class="box"><span id="hours">0</span><br>तास</div>
+    <div class="box"><span id="minutes">0</span><br>मिनिटे</div>
+    <div class="box"><span id="seconds">0</span><br>सेकंद</div>
+  </div>
+
+  <footer>💫 2007 Batch Family | जनतेच्या आठवणींचा सोहळा 💫</footer>
+
+  <script>
+    const countdown = () => {
+      const eventDate = new Date("Oct 25, 2025 10:00:00").getTime();
+      const now = new Date().getTime();
+      const gap = eventDate - now;
+
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+
+      const d = Math.floor(gap / day);
+      const h = Math.floor((gap % day) / hour);
+      const m = Math.floor((gap % hour) / minute);
+      const s = Math.floor((gap % minute) / second);
+
+      document.getElementById('days').innerText = d;
+      document.getElementById('hours').innerText = h;
+      document.getElementById('minutes').innerText = m;
+      document.getElementById('seconds').innerText = s;
+
+      if (gap < 0) {
+        document.querySelector('.countdown').innerHTML = "<h2>🎊 कार्यक्रम सुरू झाला आहे! स्वागत आहे! 🎊</h2>";
+      }
+    };
+
+    setInterval(countdown, 1000);
+  </script>
+
+</body>
+</html>
