@@ -3,101 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>जनता विद्यालय, जामोद - 2007 Batch Get-together</title>
+  <title>जनता विद्यालय, जामोद - 2007 Batch Get-Together</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #3b82f6, #9333ea);
-      color: white;
+      background: linear-gradient(135deg, #6b21a8, #2563eb);
+      color: #fff;
       text-align: center;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
 
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 0.3em;
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      max-width: 500px;
+      padding: 30px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
     }
 
-    h2 {
-      font-size: 1.4em;
-      margin-bottom: 1.5em;
+    .title {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+
+    .details {
+      font-size: 1em;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      line-height: 1.6;
     }
 
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      font-size: 1.8em;
+      gap: 15px;
+      font-size: 1.4em;
       font-weight: bold;
-      margin-top: 1.5em;
+      margin: 15px 0;
     }
 
     .box {
       background: rgba(255, 255, 255, 0.15);
-      padding: 20px 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 15px 20px;
+      border-radius: 12px;
+      min-width: 75px;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 1.2em;
+      font-weight: 600;
+      animation: blink 1.8s infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.6; }
     }
 
     footer {
-      position: absolute;
-      bottom: 10px;
+      margin-top: 25px;
       font-size: 0.9em;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 1.5em; }
+      .card { padding: 20px 15px; }
       .countdown { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <h1>🎉 जनता विद्यालय, जामोद - 2007 Batch 🎉</h1>
-  <h2>Get-Together कार्यक्रम — 25 ऑक्टोबर 2025 | सकाळी 10 वाजता पुढे</h2>
+  <div class="card">
+    <div class="title">🎉 जनता विद्यालय, जामोद 🎉</div>
+    <div class="subtitle">2007 Batch - स्नेहसंमेलन निमंत्रणपत्रिका</div>
 
-  <div class="countdown">
-    <div class="box"><span id="days">0</span><br>दिवस</div>
-    <div class="box"><span id="hours">0</span><br>तास</div>
-    <div class="box"><span id="minutes">0</span><br>मिनिटे</div>
-    <div class="box"><span id="seconds">0</span><br>सेकंद</div>
+    <div class="details">
+      🗓️ दिनांक: <b>25 ऑक्टोबर 2025</b><br>
+      🕙 वेळ: <b>सकाळी 10:00 पासून पुढे</b><br>
+      📍 स्थळ: <b>जनता विद्यालय परिसर, जामोद</b><br><br>
+      “जुने दिवस परत येणार नाहीत… पण त्या आठवणी कायम राहतील!”
+    </div>
+
+    <div id="timerSection" class="countdown">
+      <div class="box"><span id="days">0</span><br>दिवस</div>
+      <div class="box"><span id="hours">0</span><br>तास</div>
+      <div class="box"><span id="minutes">0</span><br>मिनिटे</div>
+      <div class="box"><span id="seconds">0</span><br>सेकंद</div>
+    </div>
+
+    <div id="eventStatus" class="status"></div>
+
+    <footer>💫 2007 Batch Family | जनतेच्या आठवणींचा सोहळा 💫</footer>
   </div>
 
-  <footer>💫 2007 Batch Family | जनतेच्या आठवणींचा सोहळा 💫</footer>
-
   <script>
-    const countdown = () => {
-      const eventDate = new Date("Oct 25, 2025 10:00:00").getTime();
+    function updateCountdown() {
+      const eventStart = new Date("Oct 25, 2025 10:00:00").getTime();
+      const eventEnd = new Date("Oct 25, 2025 16:30:00").getTime();
       const now = new Date().getTime();
-      const gap = eventDate - now;
+
+      const gap = eventStart - now;
+      const endGap = eventEnd - now;
 
       const second = 1000;
       const minute = second * 60;
       const hour = minute * 60;
       const day = hour * 24;
 
-      const d = Math.floor(gap / day);
-      const h = Math.floor((gap % day) / hour);
-      const m = Math.floor((gap % hour) / minute);
-      const s = Math.floor((gap % minute) / second);
+      const days = Math.floor(gap / day);
+      const hours = Math.floor((gap % day) / hour);
+      const minutes = Math.floor((gap % hour) / minute);
+      const seconds = Math.floor((gap % minute) / second);
 
-      document.getElementById('days').innerText = d;
-      document.getElementById('hours').innerText = h;
-      document.getElementById('minutes').innerText = m;
-      document.getElementById('seconds').innerText = s;
+      const dEl = document.getElementById("days");
+      const hEl = document.getElementById("hours");
+      const mEl = document.getElementById("minutes");
+      const sEl = document.getElementById("seconds");
+      const statusEl = document.getElementById("eventStatus");
+      const timerEl = document.getElementById("timerSection");
 
-      if (gap < 0) {
-        document.querySelector('.countdown').innerHTML = "<h2>🎊 कार्यक्रम सुरू झाला आहे! स्वागत आहे! 🎊</h2>";
+      if (now < eventStart) {
+        dEl.textContent = days;
+        hEl.textContent = hours;
+        mEl.textContent = minutes;
+        sEl.textContent = seconds;
+        statusEl.innerHTML = "⏳ स्नेहसंमेलन सुरू होण्यास वेळ बाकी आहे!";
+      } 
+      else if (now >= eventStart && now <= eventEnd) {
+        timerEl.style.display = "none";
+        statusEl.innerHTML = "🎊 Get-Together कार्यक्रम LIVE सुरू आहे! 🎊";
+      } 
+      else {
+        timerEl.style.display = "none";
+        statusEl.innerHTML = "💫 Get-Together कार्यक्रम संपन्न झाला! 💫";
       }
-    };
+    }
 
-    setInterval(countdown, 1000);
+    setInterval(updateCountdown, 1000);
   </script>
 
 </body>
