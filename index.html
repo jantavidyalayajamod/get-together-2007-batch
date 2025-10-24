@@ -233,7 +233,7 @@
     let count = localStorage.getItem("visitCount") ? parseInt(localStorage.getItem("visitCount")) : Math.floor(1566 + Math.random() * 20);
     count++;
     localStorage.setItem("visitCount", count);
-    visitorEl.textContent = count.toLocaleString("mr-IN");
+    visitorEl.textContent = count.toLocaleString("en-IN");
 
     // Flash effect
     visitorEl.classList.add("flash");
