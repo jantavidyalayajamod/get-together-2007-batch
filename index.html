@@ -121,6 +121,12 @@
       font-weight: 700;
       font-size: 20px;
       transition: all 0.3s ease;
+      animation: pulse 1.2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); opacity: 0.9; }
+      to { transform: scale(1.15); opacity: 1; }
     }
 
     a {
@@ -185,7 +191,7 @@
   </div>
 
   <script>
-    // Countdown Script with smart removal of 0 values
+    // Countdown Script (smart 0 skip)
     const countdown = document.getElementById("countdown");
     const eventStart = new Date("October 25, 2025 10:00:00").getTime();
     const eventEnd = new Date("October 25, 2025 16:30:00").getTime();
@@ -222,21 +228,24 @@
       }
     }, 1000);
 
-    // Visitor Counter + Animation
+    // Visitor Counter (fast animation)
     const visitorEl = document.getElementById("visitorCount");
     let count = localStorage.getItem("visitCount") ? parseInt(localStorage.getItem("visitCount")) : Math.floor(1566 + Math.random() * 20);
     count++;
     localStorage.setItem("visitCount", count);
 
     let start = 0;
-    const duration = 1000;
-    const stepTime = Math.abs(Math.floor(duration / count));
+    const duration = 1500; // Faster (1.5 sec)
+    const increment = Math.ceil(count / (duration / 30));
 
     const counter = setInterval(() => {
-      start++;
+      start += increment;
+      if (start >= count) {
+        start = count;
+        clearInterval(counter);
+      }
       visitorEl.textContent = start;
-      if (start >= count) clearInterval(counter);
-    }, stepTime);
+    }, 30);
   </script>
 
 </body>
