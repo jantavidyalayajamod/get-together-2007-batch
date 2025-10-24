@@ -121,12 +121,12 @@
       font-weight: 700;
       font-size: 20px;
       transition: all 0.3s ease;
-      animation: pulse 1.2s infinite alternate;
     }
 
-    @keyframes pulse {
-      from { transform: scale(1); opacity: 0.9; }
-      to { transform: scale(1.15); opacity: 1; }
+    #visitorCount.flash {
+      color: #ff3d00;
+      text-shadow: 0 0 10px #ff6f00;
+      transform: scale(1.2);
     }
 
     a {
@@ -228,24 +228,16 @@
       }
     }, 1000);
 
-    // Visitor Counter (fast animation)
+    // Visitor Counter (instant + flash)
     const visitorEl = document.getElementById("visitorCount");
     let count = localStorage.getItem("visitCount") ? parseInt(localStorage.getItem("visitCount")) : Math.floor(1566 + Math.random() * 20);
     count++;
     localStorage.setItem("visitCount", count);
+    visitorEl.textContent = count.toLocaleString("mr-IN");
 
-    let start = 0;
-    const duration = 1500; // Faster (1.5 sec)
-    const increment = Math.ceil(count / (duration / 30));
-
-    const counter = setInterval(() => {
-      start += increment;
-      if (start >= count) {
-        start = count;
-        clearInterval(counter);
-      }
-      visitorEl.textContent = start;
-    }, 30);
+    // Flash effect
+    visitorEl.classList.add("flash");
+    setTimeout(() => visitorEl.classList.remove("flash"), 300);
   </script>
 
 </body>
