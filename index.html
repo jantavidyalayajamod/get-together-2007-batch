@@ -99,7 +99,6 @@
       letter-spacing: 0.5px;
       margin-top: 30px;
       border-top: 3px solid #ffd54f;
-      position: relative;
     }
 
     em {
@@ -113,7 +112,8 @@
     .visitor {
       font-size: 18px;
       color: #3e2723;
-      margin-top: 10px;
+      margin: 15px 0 30px;
+      font-weight: 600;
     }
 
     #visitorCount {
@@ -130,7 +130,6 @@
     a:hover {
       color: #ffd54f;
     }
-
   </style>
 </head>
 <body>
@@ -178,8 +177,11 @@
     © 2025 | Credits – ATD Innovations, Jamod | 
     <a href="https://www.linkedin.com/in/amol-dhage-33449684" target="_blank">Amol Dhage</a> | 
     📞 <a href="tel:9890332831">9890332831</a>
-    <div class="visitor">👥 या पेजला एकूण <span id="visitorCount">1566</span> लोकांनी भेट दिली.</div>
   </footer>
+
+  <div class="visitor">
+    👥 या पेजला एकूण <span id="visitorCount">1566</span> लोकांनी भेट दिली.
+  </div>
 
   <script>
     // Countdown Script with smart removal of 0 values
@@ -219,7 +221,7 @@
       }
     }, 1000);
 
-    // Visitor Counter
+    // Visitor Counter (below footer)
     let count = localStorage.getItem("visitCount") ? parseInt(localStorage.getItem("visitCount")) : Math.floor(1566 + Math.random() * 20);
     count++;
     localStorage.setItem("visitCount", count);
