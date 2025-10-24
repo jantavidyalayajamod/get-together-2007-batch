@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>जनता विद्यालय जामोद - २००७ ची दहावी तुकडी (बॅच) स्नेहसंमेलन</title>
+  <title>जनता विद्यालय जामोद - २००७ ची दहावी तुकडी स्नेहसंमेलन</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
 
@@ -99,6 +99,7 @@
       letter-spacing: 0.5px;
       margin-top: 30px;
       border-top: 3px solid #ffd54f;
+      position: relative;
     }
 
     em {
@@ -109,38 +110,27 @@
       margin-top: 15px;
     }
 
-    .visitor-counter {
-      text-align: center;
+    .visitor {
       font-size: 18px;
-      color: #4e342e;
-      font-weight: 600;
-      margin: 25px 0 40px;
-      background: linear-gradient(90deg, #fff3e0, #ffe0b2);
-      display: inline-block;
-      padding: 10px 25px;
-      border-radius: 15px;
-      border: 2px solid #fbc02d;
-      box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
-      animation: fadeIn 1s ease-in-out;
+      color: #3e2723;
+      margin-top: 10px;
     }
 
-    .highlight-number {
-      color: #ff6f00;
+    #visitorCount {
+      color: #d32f2f;
       font-weight: 700;
-      font-size: 22px;
-      text-shadow: 0 0 10px rgba(255, 167, 38, 0.8);
-      animation: glowNum 1.5s ease-in-out infinite alternate;
+      font-size: 20px;
     }
 
-    @keyframes glowNum {
-      from { text-shadow: 0 0 5px rgba(255, 167, 38, 0.5); }
-      to { text-shadow: 0 0 15px rgba(255, 167, 38, 1); }
+    a {
+      color: #fff;
+      text-decoration: underline;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+    a:hover {
+      color: #ffd54f;
     }
+
   </style>
 </head>
 <body>
@@ -183,45 +173,16 @@
     आणि बालपण पुन्हा जगू या!</em>
   </div>
 
-  <footer style="
-  background: linear-gradient(90deg, #b71c1c, #f57f17);
-  color: white;
-  padding: 25px 10px;
-  font-weight: 600;
-  text-shadow: 1px 1px 3px #00000055;
-  letter-spacing: 0.5px;
-  margin-top: 30px;
-  border-top: 3px solid #ffd54f;
-  font-size: 16px;
-">
-  २००७ ची दहावीची तुकडी (बॅच) - शाळा आणि मित्र परिवार | पुन्हा एकत्र येण्याचा आनंदोत्सव!<br>
-  © 2025 | Credits – <span style="color:#ffe082;">ATD Innovations, Jamod</span> | 
-  <a href="https://www.linkedin.com/in/amol-dhage-33449684" 
-     target="_blank" 
-     style="color: #fff59d; text-decoration: none; font-weight: bold; transition: 0.3s;">
-     Amol Dhage
-  </a> 
-  📞 
-  <a href="tel:+919890332831" 
-     style="color: #ffecb3; text-decoration: none; font-weight: bold; transition: 0.3s;">
-     9890332831
-  </a>
-  
-  <style>
-    footer a:hover {
-      color: #fff;
-      text-shadow: 0 0 10px #fff59d, 0 0 20px #ffeb3b;
-    }
-  </style>
-</footer>
-
-
-  <div class="visitor-counter">
-    👥 या पेजला एकूण <span id="visitorCount" class="highlight-number">1566</span> लोकांनी भेट दिली.
-  </div>
+  <footer>
+    २००७ ची दहावीची तुकडी (बॅच) - शाळा आणि मित्र परिवार | पुन्हा एकत्र येण्याचा आनंदोत्सव!<br>
+    © 2025 | Credits – ATD Innovations, Jamod | 
+    <a href="https://www.linkedin.com/in/amol-dhage-33449684" target="_blank">Amol Dhage</a> | 
+    📞 <a href="tel:9890332831">9890332831</a>
+    <div class="visitor">👥 या पेजला एकूण <span id="visitorCount">1566</span> लोकांनी भेट दिली.</div>
+  </footer>
 
   <script>
-    // Countdown Timer
+    // Countdown Script with smart removal of 0 values
     const countdown = document.getElementById("countdown");
     const eventStart = new Date("October 25, 2025 10:00:00").getTime();
     const eventEnd = new Date("October 25, 2025 16:30:00").getTime();
@@ -235,7 +196,14 @@
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        countdown.innerHTML = `⏳ कार्यक्रम सुरू होण्यास अजून <br> ${days} दिवस, ${hours} तास, ${minutes} मिनिटे, ${seconds} सेकंद बाकी आहेत!`;
+
+        let parts = [];
+        if (days > 0) parts.push(`${days} दिवस`);
+        if (hours > 0) parts.push(`${hours} तास`);
+        if (minutes > 0) parts.push(`${minutes} मिनिटे`);
+        if (seconds >= 0) parts.push(`${seconds} सेकंद`);
+
+        countdown.innerHTML = `⏳ कार्यक्रम सुरू होण्यास अजून <br> ${parts.join(", ")} बाकी आहेत!`;
       } 
       else if (now >= eventStart && now <= eventEnd) {
         countdown.textContent = "🟢 स्नेहसंमेलन कार्यक्रम सध्या सुरू आहे!";
@@ -251,18 +219,11 @@
       }
     }, 1000);
 
-    // Visitor Counter Logic
-    const visitorCountEl = document.getElementById("visitorCount");
-    let count = localStorage.getItem("visitCount");
-
-    if (!count) {
-      count = 1566;
-    } else {
-      count = parseInt(count) + 1;
-    }
-
+    // Visitor Counter
+    let count = localStorage.getItem("visitCount") ? parseInt(localStorage.getItem("visitCount")) : Math.floor(1566 + Math.random() * 20);
+    count++;
     localStorage.setItem("visitCount", count);
-    visitorCountEl.textContent = count;
+    document.getElementById("visitorCount").textContent = count;
   </script>
 
 </body>
