@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>जनता विद्यालय जामोद - २००७ ची दहावी तुकडी (बॅच) स्नेहसंमेलन
-</title>
+  <title>जनता विद्यालय जामोद - २००७ ची दहावी तुकडी (बॅच) स्नेहसंमेलन</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
 
@@ -102,6 +101,16 @@
       border-top: 3px solid #ffd54f;
     }
 
+    .visitor-counter {
+      background: #fff3e0;
+      color: #5d4037;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 12px;
+      border-top: 2px solid #ffcc80;
+      border-bottom: 2px solid #ffcc80;
+    }
+
     em {
       color: #795548;
       font-style: italic;
@@ -115,12 +124,12 @@
 
   <header>
     🎓 जनता विद्यालय जामोद - २००७ ची दहावी तुकडी (बॅच) स्नेहसंमेलन 🎓
-    <div class="subtitle">२००६-२००७ ची दहावी तुकडी (बॅच) </div>
+    <div class="subtitle">२००६-२००७ ची दहावी तुकडी (बॅच)</div>
   </header>
 
   <div class="quote">“जुने दिवस परत येणार नाहीत… पण त्या आठवणी कायम आपल्यासोबत राहतील!”</div>
 
-  <div id="countdown" class="countdown">⏳ कार्यक्रमाची प्रतीक्षा सुरू आहे! </div>
+  <div id="countdown" class="countdown">⏳ कार्यक्रमाची प्रतीक्षा सुरू आहे!</div>
 
   <div class="card">
     <h2>🙏 निमंत्रण पत्रिका : जनता विद्यालयातील सर्व निवृत्त व विद्यमान शिक्षक तसेच इतर मार्गदर्शक शिक्षक वृंद व शिक्षकेतर कर्मचारी वर्ग</h2>
@@ -153,10 +162,15 @@
 
   <footer>
     २००७ ची दहावीची तुकडी (बॅच) - शाळा आणि मित्र परिवार | पुन्हा एकत्र येण्याचा आनंदोत्सव!  <br>
-    © Copyright 2025 | Credits – ATD Innovations, Jamod | Amol Dhage , 📞 9890332831
+    © 2025 | Credits – ATD Innovations, Jamod | Amol Dhage , 📞 9890332831
   </footer>
 
+  <div class="visitor-counter">
+    👥 या पेजवरील एकूण भेटी : <span id="visitorCount">1566</span>
+  </div>
+
   <script>
+    // Countdown
     const countdown = document.getElementById("countdown");
     const eventStart = new Date("October 25, 2025 10:00:00").getTime();
     const eventEnd = new Date("October 25, 2025 16:30:00").getTime();
@@ -185,6 +199,19 @@
         countdown.style.color = "#b71c1c";
       }
     }, 1000);
+
+    // Visitor Counter
+    const visitorCountEl = document.getElementById("visitorCount");
+    let count = localStorage.getItem("visitCount");
+
+    if (!count) {
+      count = 1566;
+    } else {
+      count = parseInt(count) + 1;
+    }
+
+    localStorage.setItem("visitCount", count);
+    visitorCountEl.textContent = count;
   </script>
 
 </body>
